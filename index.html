@@ -176,11 +176,30 @@
   <main>
     <!-- 设备扫描与连接 -->
     <section>
+      <h2>设备扫描与连接</h2>
+      <div class="row">
+        <button id="scanBtn" class="btn">扫描BLE设备</button>
+        <span id="scanStatus"></span>
+      </div>
+      <ul id="deviceList" class="device-list"></ul>
+      <div class="row">
+        <button id="disconnectBtn" class="btn" disabled>断开连接</button>
+        <button id="favoriteBtn" class="btn" style="display:none;">收藏此设备</button>
+        <button id="unfavoriteBtn" class="btn" style="display:none;">移除收藏</button>
+      </div>
+      <div id="favoriteDevices" style="margin-top:10px;">
+        <!-- 收藏设备列表 -->
+      </div>
+    </section>
+
+    <!-- 心率实时监测显示 -->
+    <section>
       <h2>心率监测</h2>
       <div class="heart-main">
         <svg class="heart-anim" id="heartAnim" viewBox="0 0 100 100">
+          <!-- 爱心动画矢量图 -->
           <path d="M50 80 Q40 62 20 45 Q5 30 20 20 Q35 10 50 28 Q65 10 80 20 Q95 30 80 45 Q60 62 50 80 Z"
-            fill="#e02e50" stroke="#fff" stroke-width="2"/>
+           fill="#e02e50" stroke="#fff" stroke-width="2"/>
         </svg>
         <span id="bpmNumber" class="bpm-number">--</span>
         <div>当前心率 (BPM)</div>
@@ -189,7 +208,8 @@
         <canvas id="realtimeChart" height="90"></canvas>
       </div>
     </section>
-    
+
+    <!-- 悬浮窗设置与显示 -->
     <section>
       <h2>悬浮窗显示</h2>
       <div class="settings-row">
@@ -246,28 +266,34 @@
         </div>
       </div>
     </section>
-    
+
+    <!-- 心率历史记录与分析 -->
     <section>
       <h2>历史记录</h2>
       <div class="row" style="margin-bottom:10px;">
         <button class="btn" id="reloadHistBtn">刷新列表</button>
+        <button class="btn" id="multiSelectBtn">多选</button>
+        <button class="btn" id="selectAllBtn">全选</button>
         <button class="btn" id="batchDeleteBtn">批量删除</button>
       </div>
       <div id="historyTableBox">
         <table>
           <thead>
             <tr>
-              <th></th> <th>设备名称</th>
+              <th><input type="checkbox" id="selectAllHist"/></th>
+              <th>设备名称</th>
               <th>起止时间</th>
               <th>操作</th>
             </tr>
           </thead>
           <tbody id="historyTbody">
-            </tbody>
+            <!-- 列表内容将由JS生成 -->
+          </tbody>
         </table>
       </div>
     </section>
-    
+
+    <!-- 选中历史图表页面，modal弹窗展示 -->
     <div id="historyChartModal" style="display:none; position:fixed; inset:0; background:rgba(30,36,46,0.85);z-index:10800;align-items:center;justify-content:center;">
       <div style="background:#fff;border-radius:15px;min-width:66vw;min-height:54vh;padding:30px;position:relative;">
         <div style="position:absolute;top:18px;right:24px;">
@@ -279,7 +305,8 @@
         </div>
       </div>
     </div>
-    
+
+    <!-- 数据与服务接口 -->
     <section>
       <h2>数据与服务接口</h2>
       <div class="webhook-presets">
@@ -313,30 +340,14 @@
         </div>
       </div>
     </section>
-    
-    <section>
-      <h2>设置</h2>
-      <div class="settings-row">
-        <div class="setting-toggle">
-          <input type="checkbox" id="recEnable" checked>
-          <label for="recEnable">心率数据记录</label>
-        </div>
-        <div class="setting-toggle">
-          <input type="checkbox" id="heartAnimEnable" checked>
-          <label for="heartAnimEnable">心跳动画</label>
-        </div>
-        <div class="setting-toggle">
-          <input type="checkbox" id="autoReconnectEnable" checked>
-          <label for="autoReconnectEnable">断开自动重连</label>
-        </div>
-      </div>
-    </section>
-    
+
+
+    <!-- 关于页面 -->
     <section>
       <h2>关于</h2>
       <p class="about">
         蓝牙心率监测器 &nbsp;·&nbsp;
-        <a class="github-link" href="[https://github.com/ccc007ccc/HeartRateMonitorWeb](https://github.com/ccc007ccc/HeartRateMonitorWeb)" target="_blank">GitHub 项目</a>
+        <a class="github-link" href="https://github.com/ccc007ccc/HeartRateMonitorWeb" target="_blank">GitHub 项目</a>
         <span id="versionInfo">&nbsp;v1.0.0</span>
       </p>
     </section>
